@@ -1,0 +1,35 @@
+<?php
+require_once '../../db_config.php';
+
+$year = isset($_GET['year']) ? intval($_GET['year']) : date('Y');
+$month = isset($_GET['month']) ? intval($_GET['month']) : null;
+
+$query = "SELECT category, SUM(amount) as total FROM expenses WHERE YEAR(date) = ?";
+$params = [$year];
+$types = "i";
+
+if ($month) {
+    $query .= " AND MONTH(date) = ?";
+    $params[] = $month;
+    $types .= "i";
+}
+$query .= " GROUP BY category";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param($types, ...$params);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$labels = [];
+$data = [];
+
+while ($row = $result->fetch_assoc()) {
+    $labels[] = $row['category'];
+    $data[] = floatval($row['total']);
+}
+
+echo json_encode([
+    'labels' => $labels,
+    'amounts' => $data
+]);
+?>

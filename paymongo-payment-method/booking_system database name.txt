@@ -1,0 +1,16 @@
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` varchar(100) NOT NULL,
+  `name` varchar(100),
+  `email` varchar(100),
+  `phone` varchar(20),
+  `amount` decimal(10,2),
+  `currency` varchar(10),
+  `status` varchar(20),
+  `reference` varchar(100),
+  `description` varchar(255),
+  `paid_at` datetime,
+  `created_at` datetime,
+  PRIMARY KEY (`id`)
+);
+

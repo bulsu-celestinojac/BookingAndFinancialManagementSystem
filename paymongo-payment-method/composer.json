@@ -1,0 +1,6 @@
+{
+    "require": {
+        "paymongo/paymongo-php": "*"
+    },
+    "minimum-stability": "dev"
+}

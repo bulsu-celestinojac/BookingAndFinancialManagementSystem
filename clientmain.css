@@ -1,0 +1,736 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5faff;
+    color: #222F3E;
+    min-height: 100vh;
+}
+
+/* Common Interactive Elements */
+a, button {
+    cursor: pointer;
+}
+
+/* =======================================
+   Header, Navigation, and Logo (All Pages)
+   ======================================= */
+.header, .amenities-header, .rates-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 36px 60px 0 60px; /* Desktop/Tablet padding */
+    background: #f5faff;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.logo img {
+    height: 120px; /* Default desktop height */
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    color: #1E5D8C;
+    font-weight: bold;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.2; /* Better for wrapping on small screens */
+}
+
+/* Nav Menu (shared) */
+.amenities-nav-menu,
+.rates-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 0;
+    flex-wrap: wrap; /* Added for tablet/desktop consistency */
+    justify-content: flex-end; /* Align right on desktop */
+}
+
+.amenities-nav-menu a,
+.rates-nav-menu a {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: none;
+    white-space: nowrap; /* Prevent menu items from wrapping in the middle */
+}
+
+.amenities-nav-menu a::after,
+.rates-nav-menu a::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #1E5D8C 60%, #155A78 100%);
+    border-radius: 2px;
+    transition: width 0.3s;
+    margin: 0 auto;
+}
+
+.amenities-nav-menu a:hover,
+.amenities-nav-menu a:focus,
+.rates-nav-menu a:hover,
+.rates-nav-menu a:focus {
+    color: #155A78;
+}
+
+.amenities-nav-menu a:hover::after,
+.amenities-nav-menu a:focus::after,
+.amenities-nav-menu a.active::after,
+.rates-nav-menu a:hover::after,
+.rates-nav-menu a:focus::after,
+.rates-nav-menu a.active::after {
+    width: 100%;
+}
+
+.amenities-nav-menu a.active,
+.rates-nav-menu a.active {
+    color: #155A78;
+}
+
+/* Page Titles (shared) */
+.amenities-title,
+.rates-title,
+.location-title {
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 900;
+    color: #1E5D8C;
+    letter-spacing: 2px;
+    margin: 36px 0 48px 0;
+    padding: 0 20px; /* Add horizontal padding to prevent overflow on small screens */
+    word-break: break-word; /* Ensure long titles don't overflow */
+}
+
+/* =======================================
+   Amenities Section
+   ======================================= */
+.amenities-main {
+    background: #f5faff;
+    min-height: 80vh;
+    padding-bottom: 60px;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* **IMPROVEMENT**: Use auto-fit for flexible column count */
+    gap: 36px;
+    justify-items: center;
+    align-items: stretch;
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.amenity-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(30,93,140,0.10);
+    width: 100%;
+    max-width: 320px; /* Increased max-width for slightly better tablet appearance, but `auto-fit` handles the layout */
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 12px;
+    height: 370px; /* Fixed height for consistent look */
+}
+
+.amenity-card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    flex-shrink: 0;
+}
+
+.amenity-info {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 22px 18px 18px 18px;
+}
+
+.amenity-info h2 {
+    color: #1E5D8C;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.amenity-info p {
+    color: #222F3E;
+    font-size: 1rem;
+    line-height: 1.5;
+    flex: 1 1 auto;
+}
+
+/* Zoomable Images */
+.zoomable-img {
+    cursor: zoom-in;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.zoomable-img:hover {
+    box-shadow: 0 4px 24px rgba(30,93,140,0.18);
+    transform: scale(1.03);
+}
+
+/* =======================================
+   Rates Section
+   ======================================= */
+.rates-main {
+    background: #f5faff;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.rates-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Modern Card Style */
+.rate-card {
+    background: #ffffff;
+    border: 1px solid #dbe9f6;
+    border-radius: 18px;
+    padding: 40px 36px 48px;
+    width: min(100%, 360px); /* **IMPROVEMENT**: Use min() for better mobile handling, max-width is now handled by the rate-grid flex container */
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(30, 93, 140, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    flex-grow: 1; /* Allow cards to grow if space permits */
+    margin-bottom: 0; /* Remove redundant margin */
+}
+
+.rate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 32px rgba(30, 93, 140, 0.18);
+}
+
+/* Optional: Badge like "Recommended" */
+.rate-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #1E5D8C;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* Icon or image */
+.rate-icon img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+/* Typography */
+.rate-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1E5D8C;
+    margin-bottom: 10px;
+}
+
+.rate-price {
+    font-size: 1.8rem;
+    color: #2580e8;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.rate-desc {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.rate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    text-align: left;
+    flex-grow: 1; /* Pushes button to the bottom */
+}
+
+.rate-list li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.rate-list .check {
+    color: #1E5D8C;
+    margin-right: 8px;
+    font-size: 1.2rem;
+    flex-shrink: 0; /* Prevent checkmark from shrinking */
+}
+
+.rate-list .included-item {
+    font-weight: 600;
+    color: #155A78;
+}
+
+.over-capacity-note {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Button */
+.book-btn {
+    background: #1E5D8C;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: block; /* Make button full width of card content */
+    width: 100%;
+}
+
+.book-btn:hover {
+    background: #155A78;
+    transform: translateY(-2px) scale(1.01); /* Reduced scale for better feel */
+}
+
+/* =======================================
+   Location Section
+   ======================================= */
+.location-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 60vh;
+    padding: 0 20px 60px; /* Added padding to edges */
+}
+.location-content {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.location-map {
+    flex: 2 1 450px; /* **IMPROVEMENT**: Give map more space on desktop */
+    min-width: 300px; /* Adjusted min-width */
+}
+.location-map iframe { /* **NEW**: Ensure map iframe is responsive */
+    width: 100%;
+    height: 100%;
+    min-height: 300px; /* Ensure map is visible on mobile */
+    border: none;
+    border-radius: 12px;
+}
+.location-details {
+    flex: 1 1 300px; /* **IMPROVEMENT**: Adjusted flex basis */
+    min-width: 260px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(30,93,140,0.10);
+    padding: 32px 30px; /* Reduced side padding slightly for mobile */
+    margin-top: 12px;
+}
+.location-details h2 {
+    color: #1E5D8C;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.location-details p {
+    color: #222F3E;
+    font-size: 1rem;
+    margin-bottom: 35px;
+}
+
+/* =======================================
+   Contact Section
+   ======================================= */
+.contact-main {
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+    background: #f5faff;
+}
+
+.contact-section {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #155A78;
+}
+
+.contact-desc {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #0a0a0a;
+}
+
+/* Form Styles */
+.contact-form {
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 45%; /* **IMPROVEMENT**: Ensure two columns on tablet/desktop, but full width on mobile */
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #155A78;
+}
+
+input,
+select,
+textarea {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    width: 100%; /* Ensure inputs take full width of their group */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #155A78;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px; /* Minimum height for better UX */
+}
+
+.contact-btn {
+    background-color: #155A78;
+    color: white;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1.5rem;
+    width: auto; /* Allow the button to size based on padding/content */
+}
+
+.contact-btn:hover {
+    background-color: #1E5D8C; /* Consistent hover color with primary blue */
+}
+
+/* Contact Details */
+.contact-details h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #155A78;
+}
+
+.contact-details p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.contact-details a {
+    color: #155A78;
+    text-decoration: none;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+/* =======================================
+   Modal Styles
+   ======================================= */
+.modal, .img-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(34, 47, 62, 0.95); /* Slightly darker overlay for better contrast */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .img-modal-content {
+    max-width: 95vw; /* **IMPROVEMENT**: Maximize size on small screens */
+    max-height: 95vh; /* **IMPROVEMENT**: Maximize size on small screens */
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(30,93,140,0.4); /* Stronger shadow */
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+    animation: zoomIn 0.3s;
+    overflow-y: auto; /* Added from the end of the original file for modals */
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.7);}
+    to {transform: scale(1);}
+}
+
+.close, .img-modal-close {
+    position: fixed; /* Use fixed for better control when content scrolls */
+    top: 20px; /* Adjusted position */
+    right: 20px; /* Adjusted position */
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2100;
+    transition: color 0.2s;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Added for visibility against any image */
+}
+
+.close:hover, .img-modal-close:hover {
+    color: #ffb300;
+}
+
+#caption, .img-modal-caption {
+    text-align: center;
+    color: #f3f4f5;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 18px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 1px;
+    padding: 0 20px; /* Added padding to prevent overflow */
+}
+
+/* =======================================
+   Responsive Design Media Queries
+   (Simplified and consolidated)
+   ======================================= */
+
+/* Tablet and Smaller Desktop (Max 1100px) */
+@media (max-width: 1100px) {
+    .header, .amenities-header, .rates-header {
+        padding: 30px 40px 0 40px;
+    }
+
+    /* Reduce logo size slightly */
+    .logo img {
+        height: 80px;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    .amenities-nav-menu,
+    .rates-nav-menu {
+        gap: 20px;
+    }
+
+    .amenities-nav-menu a,
+    .rates-nav-menu a {
+        font-size: 1.3rem;
+        padding: 8px 15px;
+    }
+
+    .rates-grid {
+        gap: 24px;
+    }
+}
+
+/* Medium Tablet (Max 900px) */
+@media (max-width: 900px) {
+    /* Header/Nav Stack */
+    .header,
+    .amenities-header,
+    .rates-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 20px 0 20px;
+        gap: 16px;
+    }
+
+    .logo img {
+        height: 70px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .amenities-nav-menu,
+    .rates-nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .amenities-nav-menu a,
+    .rates-nav-menu a {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 8px 0;
+        text-align: left;
+    }
+    
+    /* Amenities Grid: 2 columns */
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 10px;
+        gap: 24px;
+    }
+
+    /* Rates Grid: Stack vertically */
+    .rates-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .rate-card {
+        width: min(90%, 500px); /* Larger card on tablet */
+    }
+
+    /* Location Layout: Stack map and details */
+    .location-content {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .location-map, .location-details {
+        min-width: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+    .location-main {
+        padding-top: 0;
+    }
+
+    /* Contact Form: Ensure two groups stack when necessary */
+    .form-group {
+        min-width: 100%; /* For safety, though the next query handles mobile */
+    }
+}
+
+/* Mobile Devices (Max 600px) */
+@media (max-width: 600px) {
+    /* Titles smaller */
+    .amenities-title,
+    .rates-title,
+    .location-title {
+        font-size: 2rem;
+        margin: 24px 0 36px 0;
+    }
+
+    /* Amenities Grid: Single column */
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    .amenity-card {
+        max-width: 100%;
+        width: 100%;
+        height: auto; /* Allow height to adjust for content */
+    }
+
+    /* Rates Card: Full width for better tap targets */
+    .rate-card {
+        width: 95%;
+        padding: 30px 24px 36px;
+    }
+
+    /* Contact Form: Single column form on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+        min-width: 100%;
+    }
+
+    /* Modal Caption */
+    #caption, .img-modal-caption {
+        font-size: 1.2rem;
+        padding: 0 12px;
+    }
+
+    /* Header/Nav: Final size reduction */
+    .logo img {
+        height: 64px;
+    }
+}

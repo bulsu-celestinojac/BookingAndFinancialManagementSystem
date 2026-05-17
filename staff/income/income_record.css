@@ -1,0 +1,24 @@
+/* income_record.css */
+#incomeModal input:focus, #incomeModal select:focus {
+  outline: 2px solid var(--color-accent-teal);
+}
+
+@media print {
+  aside, .export-hide, .bg-accent-teal, .bg-blue-600 {
+    display: none !important;
+  }
+  main, table {
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+@media print {
+  #incomeTable th:last-child,
+  #incomeTable td:last-child {
+    display: none !important;
+  }
+}

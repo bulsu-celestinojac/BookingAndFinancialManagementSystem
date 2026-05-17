@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c08e0e3895439bc5d12b3e4a2176a3b3",
+    "packages": [
+        {
+            "name": "paymongo/paymongo-php",
+            "version": "dev-development",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paymongo/paymongo-php.git",
+                "reference": "e5cb9de93b71ec0ae93ee1c96c3d14360a4db855"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paymongo/paymongo-php/zipball/e5cb9de93b71ec0ae93ee1c96c3d14360a4db855",
+                "reference": "e5cb9de93b71ec0ae93ee1c96c3d14360a4db855",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paymongo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PayMongo PHP Library",
+            "homepage": "https://paymongo.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "paymongo"
+            ],
+            "support": {
+                "issues": "https://github.com/paymongo/paymongo-php/issues",
+                "source": "https://github.com/paymongo/paymongo-php/tree/development"
+            },
+            "time": "2023-08-18T03:34:41+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

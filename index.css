@@ -1,0 +1,918 @@
+/* ===================================================
+   UNIFIED STYLESHEET
+   (Merging clientmain.css and index.css)
+   =================================================== */
+
+/* --- 1. Reset and Variables --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --primary-blue: #1E5D8C;
+    --secondary-blue: #155A78;
+    --accent-blue: #2580e8;
+    --text-dark: #222F3E;
+    --bg-light: #f5faff;
+    --bg-medium: #e0f2f7; /* From index.css */
+
+    /* Shadows */
+    --shadow-light: rgba(30,93,140,0.10);
+    --shadow-medium: rgba(30,93,140,0.18); /* From index.css */
+    --shadow-strong: rgba(30,93,140,0.25); /* From index.css */
+    --header-bg: rgba(245, 250, 255, 0.95);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    /* Merged font-family: Prefer 'Segoe UI' from clientmain but keep 'Poppins' for modern touch */
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    font-size: 16px; /* Base size from clientmain.css (1rem) */
+    line-height: 1.6; /* Higher line-height from index.css for readability */
+    overflow-x: hidden;
+}
+
+/* Common Interactive Elements */
+a, button {
+    cursor: pointer;
+    text-decoration: none;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 128, 232, 0.2);
+}
+
+/* --- 2. Header, Navigation, and Logo (All Pages) --- */
+.header, .amenities-header, .rates-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Use the more explicit padding from clientmain, adjusted to match index.css style */
+    padding: 1.5rem 3.75rem; /* 24px 60px */
+    position: sticky;
+    top: 0;
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-light);
+    gap: 1.5rem; /* 24px */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 5rem; /* 80px - Using the larger size from index.css as base */
+    margin-right: 0.625rem;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 1.5rem; /* Standardized to clientmain.css for better mobile scaling */
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.2;
+}
+
+/* Nav Menu (Combined Styles) */
+.amenities-nav-menu,
+.rates-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* 32px */
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.amenities-nav-menu a,
+.rates-nav-menu a {
+    position: relative;
+    font-size: 1.125rem; /* Standardized to clientmain.css */
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 0.625rem 0.75rem; /* 10px 12px */
+    border-radius: 0.375rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s, transform 0.2s ease;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: none;
+    white-space: nowrap;
+}
+
+.amenities-nav-menu a:hover,
+.rates-nav-menu a:hover {
+    color: var(--secondary-blue);
+    transform: translateY(-2px); /* Added hover lift from index.css */
+}
+
+/* Desktop/Tablet Underline Effect */
+.amenities-nav-menu a::after,
+.rates-nav-menu a::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary-blue) 60%, var(--secondary-blue) 100%);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+    margin: 0 auto;
+}
+
+.amenities-nav-menu a:hover::after,
+.amenities-nav-menu a:focus-visible::after, /* Added focus-visible for accessibility */
+.amenities-nav-menu a.active::after,
+.rates-nav-menu a:hover::after,
+.rates-nav-menu a:focus-visible::after, /* Added focus-visible for accessibility */
+.rates-nav-menu a.active::after {
+    width: 100%;
+}
+
+.amenities-nav-menu a.active,
+.rates-nav-menu a.active {
+    color: var(--secondary-blue);
+}
+
+/* --- 3. Page Titles (Shared) --- */
+.amenities-title,
+.rates-title,
+.location-title,
+.contact-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 900;
+    color: var(--primary-blue);
+    letter-spacing: 1px;
+    margin: 2.25rem 0 2.5rem 0;
+    padding: 0 1rem;
+    word-break: break-word;
+}
+
+/* --- 4. Homepage Hero Section (from index.css) --- */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px); /* Adjusted based on the 5rem logo height (80px) and padding */
+    overflow: hidden;
+    padding: 2.5rem; /* 40px */
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-medium) 100%);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.main-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.left-section {
+    position: relative;
+    width: 50%;
+    padding: 3.125rem 3.75rem; /* 50px 60px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem; /* 20px */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.25rem; /* 20px */
+    box-shadow: 0 15px 40px var(--shadow-medium);
+    min-height: 60vh;
+    z-index: 3;
+}
+
+.right-section {
+    position: relative;
+    width: 50%;
+    min-height: 70vh;
+    background: url('images/landingpagebg.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 0.9375rem; /* 15px */
+    box-shadow: 0 15px 40px var(--shadow-medium);
+    transition: transform 0.5s ease, filter 0.5s ease, background-image 1s ease-in-out;
+    margin-left: 1.25rem; /* 20px */
+    z-index: 2;
+    height: 400px;
+}
+
+.right-section:hover {
+    transform: scale(1.01);
+    filter: brightness(1.03);
+}
+
+.hero-overlay {
+    /* ... (shimmer effect styles from index.css) ... */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 0.9375rem;
+    animation: shimmer 5s infinite linear;
+    pointer-events: none;
+}
+
+.calligraphy {
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+    color: var(--primary-blue);
+    line-height: 0.9;
+    text-shadow: 3px 3px 8px var(--shadow-light);
+    animation: textGlow 4s infinite alternate;
+    white-space: normal;
+}
+
+h1.calligraphy.slogan {
+    font-size: 4.5rem;
+    line-height: 0.95;
+    margin-bottom: 1.25rem; /* 20px */
+}
+
+.left-section p {
+    font-size: 1.15rem;
+    color: #444;
+    max-width: 90%;
+}
+
+/* MODERN BUTTON (Combined) */
+.modern-btn {
+    display: block;
+    width: 85%;
+    max-width: 350px;
+    text-align: center;
+    padding: 0.75rem 1.5625rem; /* 12px 25px */
+    font-size: 1.15rem;
+    margin: 0;
+    background: linear-gradient(90deg, var(--primary-blue) 60%, var(--secondary-blue) 100%);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 6px 20px var(--shadow-medium);
+    letter-spacing: 0.5px;
+}
+
+.modern-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(30, 93, 140, 0.5);
+    background: var(--secondary-blue);
+}
+
+/* --- 5. Amenities Section (from clientmain.css) --- */
+.amenities-main {
+    background: var(--bg-light);
+    min-height: 80vh;
+    padding-bottom: 3.75rem;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    align-items: stretch;
+    max-width: 75rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.amenity-card {
+    background: #fff;
+    border-radius: 1.125rem;
+    box-shadow: 0 0.25rem 1.5rem var(--shadow-light);
+    width: 100%;
+    max-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    height: 23rem;
+}
+
+.amenity-card img {
+    width: 100%;
+    height: 10.625rem;
+    object-fit: cover;
+    border-top-left-radius: 1.125rem;
+    border-top-right-radius: 1.125rem;
+    flex-shrink: 0;
+}
+
+.amenity-info {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.375rem 1.125rem 1.125rem;
+}
+
+.amenity-info h2 {
+    color: var(--primary-blue);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.625rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.amenity-info p {
+    color: var(--text-dark);
+    font-size: 1rem;
+    line-height: 1.5;
+    flex: 1 1 auto;
+}
+
+/* Zoomable Images */
+.zoomable-img {
+    cursor: zoom-in;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.zoomable-img:hover {
+    box-shadow: 0 0.25rem 1.5rem var(--shadow-medium); /* Standardized to medium shadow */
+    transform: scale(1.03);
+}
+
+/* --- 6. Rates Section (from clientmain.css) --- */
+.rates-main {
+    background: var(--bg-light);
+    padding: 3.75rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.rates-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.25rem;
+    max-width: 75rem;
+    width: 100%;
+}
+
+.rate-card {
+    background: #ffffff;
+    border: 1px solid #dbe9f6;
+    border-radius: 1.125rem;
+    padding: 2.5rem 2.25rem 3rem;
+    width: min(100%, 22rem);
+    text-align: center;
+    box-shadow: 0 0.375rem 1.5rem var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    flex-grow: 1;
+}
+
+.rate-card:hover {
+    transform: translateY(-0.625rem);
+    box-shadow: 0 0.75rem 2rem var(--shadow-medium); /* Standardized to medium shadow */
+}
+
+.rate-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--primary-blue);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.375rem 0.625rem;
+    border-radius: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.rate-icon img {
+    width: 4.375rem;
+    height: 4.375rem;
+    object-fit: contain;
+    margin-bottom: 1.25rem;
+}
+
+.rate-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin-bottom: 0.625rem;
+}
+
+.rate-price {
+    font-size: 1.8rem;
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.rate-desc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.25rem;
+}
+
+.rate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.rate-list li {
+    font-size: 1rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.rate-list .check {
+    color: var(--primary-blue);
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.rate-list .included-item {
+    font-weight: 600;
+    color: var(--secondary-blue);
+}
+
+.over-capacity-note {
+    font-style: italic;
+    font-size: 0.875rem;
+    color: #888;
+    margin-top: 0.625rem;
+}
+
+.book-btn {
+    /* Merged with modern-btn styles for consistency, but using its original color scheme */
+    background: var(--primary-blue);
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: block;
+    width: 100%;
+}
+
+.book-btn:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* --- 7. Location Section (from clientmain.css) --- */
+.location-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 60vh;
+    padding: 0 1.25rem 3.75rem;
+}
+.location-content {
+    display: flex;
+    gap: 2.5rem;
+    max-width: 68.75rem;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.location-map {
+    flex: 2 1 550px;
+    min-width: 18.75rem;
+}
+.location-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 18.75rem;
+    border: none;
+    border-radius: 0.75rem;
+}
+.location-details {
+    flex: 1 1 300px;
+    min-width: 16.25rem;
+    background: #fff;
+    border-radius: 1.125rem;
+    box-shadow: 0 0.25rem 1.5rem var(--shadow-light);
+    padding: 2rem 1.5rem;
+    margin-top: 0.75rem;
+}
+.location-details h2 {
+    color: var(--primary-blue);
+    font-size: 1.375rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.location-details p {
+    color: var(--text-dark);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* --- 8. Contact Section (from clientmain.css) --- */
+.contact-main {
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+    background: var(--bg-light);
+}
+
+.contact-section {
+    max-width: 50rem;
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-desc {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #0a0a0a;
+}
+
+.contact-form {
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    min-width: 45%;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--secondary-blue);
+}
+
+input,
+select,
+textarea {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+}
+
+.contact-btn {
+    background-color: var(--secondary-blue);
+    color: white;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1.5rem;
+    width: auto;
+}
+
+.contact-btn:hover {
+    background-color: var(--primary-blue);
+}
+
+.contact-details h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-blue);
+}
+
+.contact-details p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.contact-details a {
+    color: var(--secondary-blue);
+    text-decoration: none;
+}
+
+/* --- 9. Modal Styles (from clientmain.css) --- */
+.modal, .img-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(34, 47, 62, 0.95);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .img-modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 2rem rgba(30,93,140,0.4);
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+    animation: zoomIn 0.3s;
+    overflow-y: auto;
+}
+
+.close, .img-modal-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2100;
+    transition: color 0.2s;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.close:hover, .img-modal-close:hover {
+    color: #ffb300;
+}
+
+#caption, .img-modal-caption {
+    text-align: center;
+    color: #f3f4f5;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+}
+
+/* --- 10. Animations (from index.css) --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); }
+    50% { text-shadow: 2px 2px 10px rgba(30, 93, 140, 0.6); }
+    100% { text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- 11. Responsive Design Media Queries (Unified & Simplified) --- */
+
+/* Tablet & Smaller Desktop (Max 1200px) */
+@media (max-width: 1200px) {
+    .header, .amenities-header, .rates-header {
+        padding: 1.25rem 2.5rem; /* 20px 40px */
+    }
+    .logo img {
+        height: 3.75rem; /* 60px */
+    }
+    .logo-text {
+        font-size: 1.6rem;
+    }
+    .rates-nav-menu, .amenities-nav-menu {
+        gap: 1.25rem; /* 20px */
+    }
+    .rates-nav-menu a, .amenities-nav-menu a {
+        font-size: 1.1rem;
+    }
+    .left-section {
+        padding: 2.5rem; /* 40px */
+    }
+    h1.calligraphy.slogan {
+        font-size: 3.8rem;
+    }
+    .modern-btn {
+        font-size: 1.1rem;
+        padding: 0.625rem 1.25rem; /* 10px 20px */
+    }
+}
+
+/* Medium Tablet (Max 992px) - Stack Layout for Hero */
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+        min-height: auto;
+        padding: 1.875rem 1.25rem; /* 30px 20px */
+    }
+    .left-section,
+    .right-section {
+        width: 100%;
+        margin-left: 0;
+        min-height: auto;
+        border-radius: 15px;
+    }
+    .left-section {
+        margin-bottom: 1.25rem; /* 20px */
+        padding: 2.5rem 1.875rem; /* 40px 30px */
+        align-items: center;
+        text-align: center;
+    }
+    .right-section {
+        min-height: 350px;
+    }
+
+    h1.calligraphy.slogan {
+        font-size: 3.2rem;
+    }
+
+    .left-section p {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .modern-btn {
+        margin: 0 auto;
+    }
+}
+
+/* Mobile (Max 768px) - Header Stack & General Adjustments */
+@media (max-width: 768px) {
+    /* Header Stack (from index.css) */
+    .header, .amenities-header, .rates-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.9375rem 1.25rem; /* 15px 20px */
+        gap: 0.9375rem; /* 15px */
+    }
+    .logo img {
+        height: 3.125rem; /* 50px */
+        margin-right: 0.5rem;
+    }
+    .logo-text {
+        font-size: 1.4rem;
+    }
+
+    /* Nav Menu Vertical (from clientmain.css/index.css merged) */
+    .amenities-nav-menu, .rates-nav-menu {
+        flex-direction: column;
+        gap: 0.5rem; /* 8px */
+        width: 100%;
+        align-items: flex-start;
+        margin-bottom: 1rem; /* Added spacing below the menu */
+    }
+    .amenities-nav-menu a, .rates-nav-menu a {
+        font-size: 1rem;
+        padding: 0.3125rem 0; /* 5px 0 */
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Remove Desktop Underline Effect for Mobile Navigation */
+    .amenities-nav-menu a::after,
+    .rates-nav-menu a::after {
+        display: none;
+    }
+
+    /* Amenities Grid Adjustment (from clientmain.css) */
+    .amenities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+
+    /* Rates Grid Stack (from clientmain.css) */
+    .rates-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .rate-card {
+        width: min(90%, 450px);
+    }
+
+    /* Location Stack (from clientmain.css) */
+    .location-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .location-main {
+        padding: 0 1rem 2rem;
+    }
+    .location-details {
+        min-width: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* Hero Text Adjustments (from index.css) */
+    h1.calligraphy.slogan {
+        font-size: 2.5rem;
+        margin-bottom: 0.9375rem; /* 15px */
+    }
+
+    .left-section p {
+        font-size: 1rem;
+    }
+
+    /* Button Adjustment */
+    .modern-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem; /* 8px 16px */
+        width: 90%;
+        max-width: none;
+    }
+    .right-section {
+        min-height: 250px;
+    }
+}
+
+/* Small Mobile (Max 480px) - Final Detail Adjustments */
+@media (max-width: 480px) {
+    /* Titles smaller (from clientmain.css) */
+    .amenities-title,
+    .rates-title,
+    .location-title,
+    .contact-title {
+        font-size: 1.75rem;
+        margin: 1.5rem 0 2rem 0;
+    }
+
+    /* Amenities Grid: Single column (from clientmain.css) */
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+        gap: 1.5rem;
+    }
+    .amenity-card {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Contact Form: Single column (from clientmain.css) */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+        min-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .contact-section {
+        padding: 1rem;
+    }
+}
